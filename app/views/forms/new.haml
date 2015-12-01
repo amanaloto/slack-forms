@@ -17,5 +17,9 @@
       = label_tag :comment
       = text_field_tag :comment, '', :class => 'form-control'
 
+    .form-group
+      = label_tag :channel
+      = select_tag :channel, options_for_select(slack_channels, :daily_buzz), :class => 'form-control'
+
     .form-buttons
       = submit_tag :Submit, :class => 'btn btn-success'

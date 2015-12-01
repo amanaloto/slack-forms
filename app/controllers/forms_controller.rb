@@ -1,11 +1,14 @@
 class FormsController < ApplicationController
 
-  CHANNEL_IDS = {:test => 'C08DNL6J0'}
+  CHANNEL_IDS = {:test => 'C08DNL6J0', :daily_buzz => 'C08H3DSN5'}
   SLACK_URL = 'https://slack.com/api/files.upload'
+
+  before_action :redirect_to_root,
+    :only => [:new],
+    :unless => :logged_in?
 
 
   def new
-    # redirect_to :root if session[:access_token].nil?
   end
 
   def create
@@ -32,10 +35,14 @@ class FormsController < ApplicationController
       :filename => date_today + '.txt',
       :title => date_today,
       :initial_comment => params[:comment],
-      :channels => CHANNEL_IDS[:test]
+      :channels => CHANNEL_IDS[params[:channel].to_sym]
     }
 
     JSON.parse RestClient.post(SLACK_URL, query_string)
+  end
+
+  def redirect_to_root
+    redirect_to :root
   end
 
 end

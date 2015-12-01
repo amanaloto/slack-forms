@@ -4,6 +4,10 @@ class SessionsController < ApplicationController
   SLACK_ACCESS_URL = 'https://slack.com/api/oauth.access'
   REDIRECT_URI = 'http://localhost:3000/oauth'
 
+  before_action :redirect_to_new_form,
+    :only => [:new],
+    :if => :logged_in?
+
 
   def new
     @auth_link = self.generate_auth_link
@@ -44,6 +48,10 @@ class SessionsController < ApplicationController
     }
 
     JSON.parse RestClient.get(SLACK_ACCESS_URL, query_string)
+  end
+
+  def redirect_to_new_form
+    redirect_to :new_form
   end
 
 end

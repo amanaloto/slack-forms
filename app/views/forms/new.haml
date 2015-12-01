@@ -1,17 +1,21 @@
-- if flash[:success].present?
-  .div= flash[:success]
+.col-md-6
+  - if flash[:success].present?
+    .alert.alert-success= flash[:success]
 
-- if flash[:alert].present?
-  .div= flash[:alert]
+  - if flash[:alert].present?
+    .alert.alert-danger= flash[:alert]
 
-%h1 Daily Buzz
+  %h1 Daily Buzz
 
-= form_tag '/forms', :method => :post do
+  = form_tag '/forms', :method => :post do
 
-  .div= label_tag :body
-  .div= text_area_tag :body
+    .form-group
+      = label_tag :body
+      = text_area_tag :body, '', :rows => 15, :class => 'form-control'
 
-  .div= label_tag :comment
-  .div= text_field_tag :comment
+    .form-group
+      = label_tag :comment
+      = text_field_tag :comment, '', :class => 'form-control'
 
-  .div= submit_tag :save
+    .form-buttons
+      = submit_tag :Submit, :class => 'btn btn-success'

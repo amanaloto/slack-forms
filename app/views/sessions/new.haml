@@ -1,4 +1,4 @@
 - if flash[:alert].present?
-  .div= flash[:alert]
+  .alert.alert-danger= flash[:alert]
 
-= link_to 'Connect with slack', @auth_link
+.text-center= link_to 'Connect with Slack', @auth_link, :class => 'btn btn-success btn-lg'

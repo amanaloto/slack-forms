@@ -1,8 +1,17 @@
-Daily Buzz
+- if flash[:success].present?
+  .div= flash[:success]
+
+- if flash[:alert].present?
+  .div= flash[:alert]
+
+%h1 Daily Buzz
 
 = form_tag '/forms', :method => :post do
 
-  = label_tag :body
-  = text_area_tag :body
+  .div= label_tag :body
+  .div= text_area_tag :body
 
-  = submit_tag :save
+  .div= label_tag :comment
+  .div= text_field_tag :comment
+
+  .div= submit_tag :save

@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  # root :to => 'sessions#new'
+  root :to => 'sessions#new'
 
-  root :to => 'forms#new'
+  get 'oauth', :to => 'sessions#oauth'
 
   resources :forms, :only => [:new, :create]
 

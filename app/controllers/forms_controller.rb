@@ -4,12 +4,12 @@ class FormsController < ApplicationController
   SLACK_URL = 'https://slack.com/api/files.upload'
 
   def new
-
+    # redirect_to :root if session[:access_token].nil?
   end
 
   def create
     query_string = {
-      :token => 'xoxp-6975943360-6976657185-15437650999-58168557e1',
+      :token => session[:access_token],
       :file => 'daily_buzz',
       :content => params[:body],
       :filetype => 'post',

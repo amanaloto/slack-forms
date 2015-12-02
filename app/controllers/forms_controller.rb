@@ -9,14 +9,15 @@ class FormsController < ApplicationController
 
 
   def new
+    @username = session[:username]
   end
 
   def create
     response = self.post_to_slack
 
-    puts response
-
     if response['ok']
+      self.save_form_to_db response['file']
+
       redirect_to :new_form,
         :flash => {:success => 'Successfully posted to slack!'}
     else
@@ -41,6 +42,10 @@ class FormsController < ApplicationController
     }
 
     JSON.parse RestClient.post(SLACK_URL, query_string)
+  end
+
+  def save_form_to_db file_info
+    Form.create :data => file_info, :form_type => :daily_buzz
   end
 
   def redirect_to_root

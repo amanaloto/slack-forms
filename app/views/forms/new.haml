@@ -21,5 +21,8 @@
       = label_tag :channel
       = select_tag :channel, options_for_select(slack_channels, :daily_buzz), :class => 'form-control'
 
+
     .form-buttons
       = submit_tag :Submit, :class => 'btn btn-success'
+      as
+      %strong= @username

@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20151202042726) do
 
   create_table "forms", force: :cascade do |t|
     t.text     "data"
-    t.string   "type"
+    t.integer  "form_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

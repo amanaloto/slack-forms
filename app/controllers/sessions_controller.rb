@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   SLACK_AUTH_URL = 'https://slack.com/oauth/authorize'
+  SLACK_AUTH_TEST_URL = 'https://slack.com/api/auth.test'
   SLACK_ACCESS_URL = 'https://slack.com/api/oauth.access'
   REDIRECT_URI = 'http://localhost:3000/oauth'
 
@@ -17,7 +18,11 @@ class SessionsController < ApplicationController
     response = self.get_access_token
 
     if response['ok']
+      info_response = self.get_username response['access_token']
+
+      session[:username] = info_response['user']
       session[:access_token] = response['access_token']
+
       redirect_to :new_form,
         :flash => {:success => 'Successful authentication!'}
     else
@@ -48,6 +53,12 @@ class SessionsController < ApplicationController
     }
 
     JSON.parse RestClient.get(SLACK_ACCESS_URL, query_string)
+  end
+
+  def get_username access_token
+    query_string = {:params => {:token => access_token}}
+
+    JSON.parse RestClient.get(SLACK_AUTH_TEST_URL, query_string)
   end
 
   def redirect_to_new_form

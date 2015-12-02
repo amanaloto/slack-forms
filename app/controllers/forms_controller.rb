@@ -14,6 +14,8 @@ class FormsController < ApplicationController
   def create
     response = self.post_to_slack
 
+    puts response
+
     if response['ok']
       redirect_to :new_form,
         :flash => {:success => 'Successfully posted to slack!'}

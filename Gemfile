@@ -27,6 +27,8 @@ gem 'rest-client'
 
 gem 'figaro'
 
+gem 'pg'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

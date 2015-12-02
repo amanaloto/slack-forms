@@ -100,6 +100,7 @@ GEM
     netrc (0.10.3)
     nokogiri (1.6.7)
       mini_portile2 (~> 2.0.0.rc2)
+    pg (0.18.3)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -187,6 +188,7 @@ DEPENDENCIES
   haml-rails
   jbuilder (~> 2.0)
   jquery-rails
+  pg
   rails (= 4.2.3)
   rest-client
   sass-rails (~> 5.0)

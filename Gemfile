@@ -29,6 +29,12 @@ gem 'figaro'
 
 gem 'pg'
 
+gem 'capistrano'
+gem 'capistrano-rails'
+gem 'capistrano-bundler'
+gem 'capistrano-rvm'
+gem 'unicorn'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

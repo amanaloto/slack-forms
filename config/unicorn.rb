@@ -1,4 +1,4 @@
-i# unicorn.rb
+# unicorn.rb
 # set path to application and working directory
 # Rails root is not accessible here
 app_dir = File.expand_path("../..", __FILE__)

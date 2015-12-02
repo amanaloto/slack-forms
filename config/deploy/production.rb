@@ -1,4 +1,4 @@
-set :branch, :production
+set :branch, :master
 set :stage, :production
 
 role :app, %w{deployuser@96.47.69.155}

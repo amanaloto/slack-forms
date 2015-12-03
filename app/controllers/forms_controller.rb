@@ -9,10 +9,12 @@ class FormsController < ApplicationController
 
   def new
     @username = session[:username]
+    @form_type = params[:form_type] || :daily_buzz
   end
 
   def create
-    response = self.post_to_slack
+    form_handler = ::Forms::FormFactory.new.build params[:form_type]
+    response = self.post_to_slack form_handler.generate_query_string(params)
 
     if response['ok']
       self.save_form_to_db response['file']
@@ -28,16 +30,8 @@ class FormsController < ApplicationController
 
   protected
 
-  def post_to_slack
-    date_today = Time.now.strftime '%Y-%m-%d'
-    query_string = {
-      :token => session[:access_token],
-      :content => params[:body],
-      :filetype => 'post',
-      :title => date_today,
-      :initial_comment => params[:comment],
-      :channels => ::Form::CHANNEL_IDS[params[:channel].to_sym]
-    }
+  def post_to_slack query_string
+    query_string.merge! :token => session[:access_token]
 
     JSON.parse RestClient.post(SLACK_URL, query_string)
   end

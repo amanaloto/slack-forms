@@ -5,24 +5,11 @@
   - if flash[:alert].present?
     .alert.alert-danger= flash[:alert]
 
-  %h1 Daily Buzz
-
-  = form_tag '/forms', :method => :post do
+  = form_tag [:new, :form], :method => 'get' do
 
     .form-group
-      = label_tag :body
-      = text_area_tag :body, '', :rows => 15, :class => 'form-control'
+      = label_tag :form
+      = select_tag :form_type, options_for_select(::Form::FORM_TYPES, @form_type), :class => 'form-control js-auto-submit'
 
-    .form-group
-      = label_tag :comment
-      = text_field_tag :comment, '', :class => 'form-control'
-
-    .form-group
-      = label_tag :channel
-      = select_tag :channel, options_for_select(::Form::CHANNEL_IDS.keys, :daily_buzz), :class => 'form-control'
-
-
-    .form-buttons
-      = submit_tag :Submit, :class => 'btn btn-success'
-      as
-      %strong= @username
+  - if @form_type == :daily_buzz
+    = render :partial => 'daily_buzz', :locals => {:username => @username}

@@ -1,0 +1,28 @@
+-#
+-# Locals:
+-#  - username
+-#
+
+%h1 Daily Buzz
+
+= form_tag '/forms', :method => :post do
+
+  = hidden_field_tag :form_type, :daily_buzz
+
+  .form-group
+    = label_tag :body
+    = text_area_tag :body, '', :rows => 15, :class => 'form-control'
+
+  .form-group
+    = label_tag :comment
+    = text_field_tag :comment, '', :class => 'form-control'
+
+  .form-group
+    = label_tag :channel
+    = select_tag :channel, options_for_select(::Form::CHANNEL_IDS.keys, :daily_buzz), :class => 'form-control'
+
+
+  .form-buttons
+    = submit_tag :Submit, :class => 'btn btn-success'
+    as
+    %strong= username

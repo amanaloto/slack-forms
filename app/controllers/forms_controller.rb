@@ -1,6 +1,5 @@
 class FormsController < ApplicationController
 
-  CHANNEL_IDS = {:test => 'C08DNL6J0', :daily_buzz => 'C08H3DSN5'}
   SLACK_URL = 'https://slack.com/api/files.upload'
 
   before_action :redirect_to_root,
@@ -35,10 +34,9 @@ class FormsController < ApplicationController
       :token => session[:access_token],
       :content => params[:body],
       :filetype => 'post',
-      :filename => date_today + '.txt',
       :title => date_today,
       :initial_comment => params[:comment],
-      :channels => CHANNEL_IDS[params[:channel].to_sym]
+      :channels => ::Form::CHANNEL_IDS[params[:channel].to_sym]
     }
 
     JSON.parse RestClient.post(SLACK_URL, query_string)

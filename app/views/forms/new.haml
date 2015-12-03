@@ -19,7 +19,7 @@
 
     .form-group
       = label_tag :channel
-      = select_tag :channel, options_for_select(slack_channels, :daily_buzz), :class => 'form-control'
+      = select_tag :channel, options_for_select(::Form::CHANNEL_IDS.keys, :daily_buzz), :class => 'form-control'
 
 
     .form-buttons

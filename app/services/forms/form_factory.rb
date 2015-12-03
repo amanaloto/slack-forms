@@ -14,6 +14,10 @@ class Forms::FormFactory
     case @form_type
     when :daily_buzz
       ::Forms::DailyBuzzForm
+
+    when :payroll_hero
+      ::Forms::PayrollHeroForm
+
     else
       ::Forms::NoForm
     end

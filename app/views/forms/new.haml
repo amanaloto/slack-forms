@@ -13,3 +13,9 @@
 
   - if @form_type == :daily_buzz
     = render :partial => 'daily_buzz', :locals => {:username => @username}
+
+  - elsif @form_type == :research
+    = render :partial => 'research', :locals => {:username => @username}
+
+  - elsif @form_type == :payroll_hero
+    = render :partial => 'payroll_hero', :locals => {:username => @username}

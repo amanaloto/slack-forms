@@ -1,0 +1,34 @@
+-#
+-# Locals:
+-#  - username
+-#
+
+%h1 Payroll Hero
+
+= form_tag '/forms', :method => :post do
+  = hidden_field_tag :form_type, :payroll_hero
+
+  .form-group
+    = label_tag :date
+    = text_field_tag :date, '', :class => 'form-control'
+
+  .form-group
+    = label_tag :time_in
+    = text_field_tag :time_in, '', :class => 'form-control'
+
+  .form-group
+    = label_tag :time_out
+    = text_field_tag :time_out, '', :class => 'form-control'
+
+  .form-group
+    = label_tag :reason
+    = text_area_tag :reason, '', :rows => 5, :class => 'form-control'
+
+  .form-group
+    = label_tag :channel
+    = select_tag :channel, options_for_select(::Form::CHANNEL_IDS.keys, :payroll_hero), :class => 'form-control'
+
+  .form-buttons
+    = submit_tag :Submit, :class => 'btn btn-success'
+    as
+    %strong= username

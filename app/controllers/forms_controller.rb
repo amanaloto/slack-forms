@@ -9,7 +9,7 @@ class FormsController < ApplicationController
 
   def new
     @username = session[:username]
-    @form_type = params[:form_type] || :daily_buzz
+    @form_type = params[:form_type].try(:to_sym) || :daily_buzz
   end
 
   def create
@@ -22,6 +22,7 @@ class FormsController < ApplicationController
       redirect_to :new_form,
         :flash => {:success => 'Successfully posted to slack!'}
     else
+      puts response
       redirect_to :new_form, :flash => {:alert => 'Error!'}
     end
   end

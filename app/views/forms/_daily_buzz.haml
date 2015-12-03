@@ -6,7 +6,6 @@
 %h1 Daily Buzz
 
 = form_tag '/forms', :method => :post do
-
   = hidden_field_tag :form_type, :daily_buzz
 
   .form-group
@@ -20,7 +19,6 @@
   .form-group
     = label_tag :channel
     = select_tag :channel, options_for_select(::Form::CHANNEL_IDS.keys, :daily_buzz), :class => 'form-control'
-
 
   .form-buttons
     = submit_tag :Submit, :class => 'btn btn-success'

@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
   SLACK_AUTH_URL = 'https://slack.com/oauth/authorize'
   SLACK_AUTH_TEST_URL = 'https://slack.com/api/auth.test'
   SLACK_ACCESS_URL = 'https://slack.com/api/oauth.access'
+  REDIRECT_URI = "#{Figaro.env.app_url}/oauth"
 
   before_action :redirect_to_new_form,
     :only => [:new],
@@ -30,6 +31,10 @@ class SessionsController < ApplicationController
     end
   end
 
+  def slash_command
+    render :plain => "<#{Figaro.env.app_url}/forms/new|SlackForms>"
+  end
+
 
 
   protected
@@ -38,7 +43,7 @@ class SessionsController < ApplicationController
     "#{SLACK_AUTH_URL}" \
       "?client_id=#{Figaro.env.slack_client_id}&" \
       "scope=files:write:user&"\
-      "redirect_uri=#{Figaro.env.slack_redirect_uri}"
+      "redirect_uri=#{REDIRECT_URI}"
   end
 
   def get_access_token
@@ -47,7 +52,7 @@ class SessionsController < ApplicationController
         :client_id => Figaro.env.slack_client_id,
         :client_secret => Figaro.env.slack_client_secret,
         :code => params[:code],
-        :redirect_uri => Figaro.env.slack_redirect_uri
+        :redirect_uri => REDIRECT_URI
       }
     }
 

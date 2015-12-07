@@ -6,6 +6,7 @@ class Form < ActiveRecord::Base
     :payroll_hero => 'C0FB2JFM4',
     :test => 'C08DNL6J0'
   }
+  LOADS = ['#0', '#1', '#2']
 
   serialize :data, JSON
 

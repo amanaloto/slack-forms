@@ -9,15 +9,42 @@
   = hidden_field_tag :form_type, :daily_buzz
 
   .form-group
-    = label_tag :body
-    = text_area_tag :body, '', :rows => 15, :class => 'form-control'
+    = label_tag :date
+    = text_field_tag :date, Time.now.strftime('%Y-%m-%d'), :class => 'form-control'
 
   .form-group
-    = label_tag :comment
-    = text_field_tag :comment, '', :class => 'form-control'
+    = label_tag 'Tasks done today'
+    .today-field.input-group
+      .input-group-addon 1.
+      = text_field_tag 'today[]', '', :class => 'form-control js-cloneable'
+    .pull-right
+      = link_to '#', :class => 'btn btn-success js-cloner', :data => {:target => '.today-field'} do
+        .glyphicon.glyphicon-plus
+
+  %br
 
   .form-group
-    = label_tag :channel
+    = label_tag 'Tasks for tomorrow'
+    .tomorrow-field.input-group
+      .input-group-addon 1.
+      = text_field_tag 'tomorrow[]', '', :class => 'form-control js-cloneable'
+    .pull-right
+      = link_to '#', :class => 'btn btn-success js-cloner', :data => {:target => '.tomorrow-field'} do
+        .glyphicon.glyphicon-plus
+
+  %br
+
+  .flex
+    .form-group
+      = label_tag 'Load for tomorrow'
+      = select_tag :load, options_for_select(::Form::LOADS, '#0'), :class => 'form-control'
+
+    .form-group
+      = label_tag :project
+      = text_field_tag :project, '', :class => 'form-control'
+
+  .form-group
+    = label_tag 'Send to channel'
     = select_tag :channel, options_for_select(::Form::CHANNEL_IDS.keys, :daily_buzz), :class => 'form-control'
 
   .form-buttons

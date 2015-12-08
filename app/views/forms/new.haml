@@ -12,10 +12,10 @@
       = select_tag :form_type, options_for_select(::Form::FORM_TYPES, @form_type), :class => 'form-control js-auto-submit'
 
   - if @form_type == :daily_buzz
-    = render :partial => 'daily_buzz', :locals => {:username => @username}
+    = render :partial => 'daily_buzz'
 
-  - elsif @form_type == :research
-    = render :partial => 'research', :locals => {:username => @username}
+  - elsif @form_type == :evaluation
+    = render :partial => 'evaluation'
 
   - elsif @form_type == :payroll_hero
-    = render :partial => 'payroll_hero', :locals => {:username => @username}
+    = render :partial => 'payroll_hero'

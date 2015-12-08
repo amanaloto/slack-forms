@@ -28,6 +28,7 @@ gem 'rest-client'
 gem 'figaro'
 
 gem 'pg'
+gem 'seedbank'
 
 gem 'capistrano'
 gem 'capistrano-rails'

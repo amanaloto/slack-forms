@@ -1,8 +1,3 @@
--#
--# Locals:
--#  - username
--#
-
 %h1 Payroll Hero
 
 = form_tag '/forms', :method => :post do
@@ -31,4 +26,4 @@
   .form-buttons
     = submit_tag :Submit, :class => 'btn btn-success'
     as
-    %strong= username
+    %strong= current_user.name

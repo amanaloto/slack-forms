@@ -18,9 +18,9 @@ class SessionsController < ApplicationController
     response = self.get_access_token
 
     if response['ok']
-      info_response = self.get_username response['access_token']
+      info_response = self.get_slack_user_info response['access_token']
 
-      session[:username] = info_response['user']
+      session[:current_slack_id] = info_response['user_id']
       session[:access_token] = response['access_token']
 
       redirect_to :new_form,
@@ -59,7 +59,7 @@ class SessionsController < ApplicationController
     JSON.parse RestClient.get(SLACK_ACCESS_URL, query_string)
   end
 
-  def get_username access_token
+  def get_slack_user_info access_token
     query_string = {:params => {:token => access_token}}
 
     JSON.parse RestClient.get(SLACK_AUTH_TEST_URL, query_string)

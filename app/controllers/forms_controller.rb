@@ -8,7 +8,6 @@ class FormsController < ApplicationController
 
 
   def new
-    @username = session[:username]
     @form_type = params[:form_type].try(:to_sym) || :daily_buzz
   end
 

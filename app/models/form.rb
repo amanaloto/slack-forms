@@ -1,6 +1,6 @@
 class Form < ActiveRecord::Base
 
-  FORM_TYPES = [:daily_buzz, :research, :payroll_hero]
+  FORM_TYPES = [:daily_buzz, :evaluation, :payroll_hero]
   CHANNEL_IDS = {
     :daily_buzz => 'C08H3DSN5',
     :payroll_hero => 'C0FB2JFM4',

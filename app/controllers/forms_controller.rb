@@ -9,6 +9,8 @@ class FormsController < ApplicationController
 
   def new
     @form_type = params[:form_type].try(:to_sym) || :daily_buzz
+
+    redirect_to [:new, :evaluation] and return if @form_type == :evaluation
   end
 
   def create

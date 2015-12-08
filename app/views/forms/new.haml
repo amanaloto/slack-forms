@@ -1,21 +1,9 @@
-.col-md-6
-  - if flash[:success].present?
-    .alert.alert-success= flash[:success]
+= render :partial => 'shared/flash'
 
-  - if flash[:alert].present?
-    .alert.alert-danger= flash[:alert]
+= render :partial => 'shared/form_select', :locals => {:default => @form_type}
 
-  = form_tag [:new, :form], :method => 'get' do
+- if @form_type == :daily_buzz
+  = render :partial => 'daily_buzz'
 
-    .form-group
-      = label_tag :form
-      = select_tag :form_type, options_for_select(::Form::FORM_TYPES, @form_type), :class => 'form-control js-auto-submit'
-
-  - if @form_type == :daily_buzz
-    = render :partial => 'daily_buzz'
-
-  - elsif @form_type == :evaluation
-    = render :partial => 'evaluation'
-
-  - elsif @form_type == :payroll_hero
-    = render :partial => 'payroll_hero'
+- elsif @form_type == :payroll_hero
+  = render :partial => 'payroll_hero'

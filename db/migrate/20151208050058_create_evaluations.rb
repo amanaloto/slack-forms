@@ -5,9 +5,10 @@ class CreateEvaluations < ActiveRecord::Migration
       t.integer :mastery
       t.integer :documentation
       t.integer :presentation_quality
+      t.text :comments
 
-      t.references :presentation_id
-      t.references :user_id
+      t.references :presentation
+      t.references :user
 
       t.timestamps null: false
     end

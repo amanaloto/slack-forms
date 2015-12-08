@@ -1,0 +1,10 @@
+-#
+-# Locals:
+-#  - default
+-#
+
+= form_tag [:new, :form], :method => 'get' do
+
+  .form-group
+    = label_tag :form
+    = select_tag :form_type, options_for_select(::Form::FORM_TYPES, default), :class => 'form-control js-auto-submit'

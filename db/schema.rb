@@ -21,8 +21,9 @@ ActiveRecord::Schema.define(version: 20151208054740) do
     t.integer  "mastery"
     t.integer  "documentation"
     t.integer  "presentation_quality"
-    t.integer  "presentation_id_id"
-    t.integer  "user_id_id"
+    t.text     "comments"
+    t.integer  "presentation_id"
+    t.integer  "user_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
@@ -36,7 +37,7 @@ ActiveRecord::Schema.define(version: 20151208054740) do
 
   create_table "presentations", force: :cascade do |t|
     t.string   "title"
-    t.integer  "user_id_id"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

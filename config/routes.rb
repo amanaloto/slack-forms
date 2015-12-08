@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 
   resources :forms, :only => [:new, :create]
 
+  resources :evaluations, :only => [:new, :create]
+
 end

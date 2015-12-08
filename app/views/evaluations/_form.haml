@@ -1,0 +1,35 @@
+%h1 Evaluation
+
+= form_for @evaluation do |f|
+  = hidden_field_tag :form_type, :evaluation
+
+  .form-group
+    = f.label :presentation
+    .input-group
+      = f.select :presentation_id, options_for_select(Presentation.valid_presentations), {}, :class => 'form-control'
+      .input-group-btn
+        = link_to '#', :class => 'btn btn-success' do
+          .glyphicon.glyphicon-plus
+
+  .form-group
+    = f.label 'Relevance (30%)'
+    = f.select :relevance, options_for_select(::Evaluation::POINT_SYSTEM), {}, :class => 'form-control'
+
+  .form-group
+    = f.label 'Mastery (30%)'
+    = f.select :mastery, options_for_select(::Evaluation::POINT_SYSTEM), {}, :class => 'form-control'
+
+  .form-group
+    = f.label 'Documentation (20%)'
+    = f.select :documentation, options_for_select(::Evaluation::POINT_SYSTEM), {}, :class => 'form-control'
+
+  .form-group
+    = f.label 'Presentation Quality (20%)'
+    = f.select :presentation_quality, options_for_select(::Evaluation::POINT_SYSTEM), {}, :class => 'form-control'
+
+  .form-group
+    = f.label :comments
+    = f.text_area :comments, :class => 'form-control'
+
+  .form-buttons
+    = f.submit 'save', :class => 'btn btn-success'

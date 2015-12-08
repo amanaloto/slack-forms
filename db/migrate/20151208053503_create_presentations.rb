@@ -3,7 +3,7 @@ class CreatePresentations < ActiveRecord::Migration
     create_table :presentations do |t|
       t.string :title
 
-      t.references :user_id
+      t.references :user
 
       t.timestamps null: false
     end

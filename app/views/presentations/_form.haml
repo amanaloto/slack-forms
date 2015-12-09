@@ -1,0 +1,12 @@
+= form_for @presentation do |f|
+
+  .form-group
+    = f.label :user
+    = f.select :user_id, options_for_select(User.valid_users), {}, :class => 'form-control'
+
+  .form-group
+    = f.label :title
+    = f.text_field :title, :class => 'form-control'
+
+  .form-buttons
+    = f.submit :class => 'btn btn-success'

@@ -1,9 +1,11 @@
-= render :partial => 'shared/flash'
+= render 'shared/flash'
 
 = render :partial => 'shared/form_select', :locals => {:default => @form_type}
 
 - if @form_type == :daily_buzz
-  = render :partial => 'daily_buzz'
+  %h1 Daily Buzz
+  = render 'daily_buzz'
 
 - elsif @form_type == :payroll_hero
-  = render :partial => 'payroll_hero'
+  %h1 Payroll Hero
+  = render 'payroll_hero'

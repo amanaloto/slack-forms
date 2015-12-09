@@ -11,4 +11,5 @@ class Presentation < ActiveRecord::Base
   def self.valid_presentations
     Hash[Presentation.all.map{ |p| ["#{p.title} by #{p.user.name}", p.id] }]
   end
+
 end

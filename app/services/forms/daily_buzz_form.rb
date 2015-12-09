@@ -34,7 +34,7 @@ class Forms::DailyBuzzForm
 
   def format_list task_array
     return '' if task_array.empty?
-    task_array.map { |t| "- #{t}" }.join("\n")
+    task_array.reject(&:empty?).map { |t| "- #{t}" }.join("\n")
   end
 
 end

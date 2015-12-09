@@ -9,4 +9,6 @@ Rails.application.routes.draw do
 
   resources :evaluations, :only => [:new, :create]
 
+  resources :presentations, :only => [:new, :create]
+
 end

@@ -1,5 +1,3 @@
-%h1 Evaluation
-
 = form_for @evaluation do |f|
   = hidden_field_tag :form_type, :evaluation
 
@@ -8,24 +6,38 @@
     .input-group
       = f.select :presentation_id, options_for_select(Presentation.valid_presentations), {}, :class => 'form-control'
       .input-group-btn
-        = link_to '#', :class => 'btn btn-success' do
+        = link_to [:new, :presentation], :class => 'btn btn-success' do
           .glyphicon.glyphicon-plus
 
+  %h3 Rating (the higher the better)
   .form-group
-    = f.label 'Relevance (30%)'
-    = f.select :relevance, options_for_select(::Evaluation::POINT_SYSTEM), {}, :class => 'form-control'
+    .flex.space-between
+      .panel.flex-half
+        = f.label 'Relevance (30%)'
+        .small Relevance to the work we are doing. Can the idea that was presented be applied to our projects? Will we be able to capitalize on this in the future?
+      = f.select :relevance, options_for_select(::Evaluation::POINT_SYSTEM), {}, :class => 'form-control flex-sm'
+
 
   .form-group
-    = f.label 'Mastery (30%)'
-    = f.select :mastery, options_for_select(::Evaluation::POINT_SYSTEM), {}, :class => 'form-control'
+    .flex.space-between
+      .panel.flex-half
+        = f.label 'Mastery (30%)'
+        .small Mastery of topic presented. Did the speaker present the idea in a concise manner? Was the speaker able to answer questions/clarifications regarding the topic?
+      = f.select :mastery, options_for_select(::Evaluation::POINT_SYSTEM), {}, :class => 'form-control flex-sm'
 
   .form-group
-    = f.label 'Documentation (20%)'
-    = f.select :documentation, options_for_select(::Evaluation::POINT_SYSTEM), {}, :class => 'form-control'
+    .flex.space-between
+      .panel.flex-half
+        = f.label 'Documentation (20%)'
+        .small Quality and usefulness of documentation used for the reporting. Is it readable? Is it independent from the actual reporting? The report documentation will be used for future references.
+      = f.select :documentation, options_for_select(::Evaluation::POINT_SYSTEM), {}, :class => 'form-control flex-sm'
 
   .form-group
-    = f.label 'Presentation Quality (20%)'
-    = f.select :presentation_quality, options_for_select(::Evaluation::POINT_SYSTEM), {}, :class => 'form-control'
+    .flex.space-between
+      .panel.flex-half
+        = f.label 'Presentation Quality (20%)'
+        .small Quality of the presentation of the report. Was the speaker clear in introducing the idea? Is he/she articulate? Were there any ambiguities/confusions in the presentation of the idea?
+      = f.select :presentation_quality, options_for_select(::Evaluation::POINT_SYSTEM), {}, :class => 'form-control flex-sm'
 
   .form-group
     = f.label :comments

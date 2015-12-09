@@ -28,13 +28,15 @@
   %br
 
   .flex
-    .form-group
-      = label_tag 'Load for tomorrow'
-      = select_tag :load, options_for_select(::Form::LOADS, '#0'), :class => 'form-control'
-
-    .form-group
+    .form-group.flex-half
       = label_tag :project
-      = text_field_tag :project, '', :class => 'form-control'
+      .input-group
+        .input-group-addon #
+        = text_field_tag :project, '', :class => 'form-control', :placeholder => 'project_name'
+
+    .form-group.flex-sm
+      = label_tag :load
+      = select_tag :load, options_for_select(::Form::LOADS, '#0'), :class => 'form-control'
 
   .form-group
     = label_tag 'Send to channel'

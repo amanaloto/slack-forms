@@ -17,4 +17,8 @@ class ApplicationController < ActionController::Base
     session[:access_token].present?
   end
 
+  def redirect_to_root
+    redirect_to :root
+  end
+
 end

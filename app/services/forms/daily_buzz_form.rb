@@ -29,7 +29,8 @@ class Forms::DailyBuzzForm
   end
 
   def format_comment options = {:load => nil, :project => nil}
-    "#{options[:load]} #{options[:project]}"
+    project = "##{options[:project]}" unless options[:project].blank?
+    "#{options[:load]} #{project}"
   end
 
   def format_list task_array

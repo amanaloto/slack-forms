@@ -42,8 +42,4 @@ class FormsController < ApplicationController
     Form.create :data => file_info, :form_type => :daily_buzz
   end
 
-  def redirect_to_root
-    redirect_to :root
-  end
-
 end

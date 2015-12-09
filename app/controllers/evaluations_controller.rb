@@ -1,6 +1,10 @@
 class EvaluationsController < ApplicationController
 
+  before_action :redirect_to_root,
+    :only => [:new],
+    :unless => :logged_in?
   before_action :build_evaluation
+
 
   def new
   end

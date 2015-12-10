@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    session[:access_token].present?
+    session[:access_token].present? && session[:current_slack_id].present?
   end
 
   def redirect_to_root

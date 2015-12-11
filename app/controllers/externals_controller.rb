@@ -1,4 +1,4 @@
-class ExternalController < ApplicationController
+class ExternalsController < ApplicationController
 
   def dump
     users = User.all

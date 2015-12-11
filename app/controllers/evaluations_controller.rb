@@ -1,7 +1,5 @@
 class EvaluationsController < ApplicationController
 
-  respond_to :json, :only => [:dump]
-
   before_action :redirect_to_root,
     :only => [:new],
     :unless => :logged_in?

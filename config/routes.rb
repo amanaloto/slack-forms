@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :presentations, :only => [:new, :create]
 
-  resources :external, :only => [] do
+  resource :external, :only => [] do
     get :dump, :on => :collection
   end
 

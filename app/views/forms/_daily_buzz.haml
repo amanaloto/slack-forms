@@ -17,7 +17,7 @@
   %br
 
   .form-group
-    = label_tag 'Tasks for tomorrow'
+    = label_tag 'Upcoming tasks'
     .tomorrow-field.input-group
       .input-group-addon 1.
       = text_field_tag 'tomorrow[]', '', :class => 'form-control js-cloneable'
@@ -29,10 +29,8 @@
 
   .flex
     .form-group.flex-half
-      = label_tag :project
-      .input-group
-        .input-group-addon #
-        = text_field_tag :project, '', :class => 'form-control', :placeholder => 'project_name'
+      = label_tag 'Project/s'
+      = text_field_tag :project, '', :class => 'form-control', :placeholder => '#project1 #project2'
 
     .form-group.flex-sm
       = label_tag :load

@@ -22,15 +22,19 @@ class Forms::DailyBuzzForm
     today_list = self.format_list options[:today]
     tomorrow_list = self.format_list options[:tomorrow]
 
-    "### Tasks done today:\n" \
-      "#{today_list}\n" \
-    "### Tasks for tomorrow:\n" \
-      "#{tomorrow_list}"
+    # NOTE: Since Slack does not accept an empty content, initialize with a
+    # blank space (baby) so the sent content is not empty in the case that there
+    # is no input by the user.
+    body = " "
+
+    body += "### Tasks done today:\n#{today_list}\n" unless today_list.blank?
+    body += "### Upcoming tasks:\n#{tomorrow_list}" unless tomorrow_list.blank?
+
+    body
   end
 
   def format_comment options = {:load => nil, :project => nil}
-    project = "##{options[:project]}" unless options[:project].blank?
-    "#{options[:load]} #{project}"
+    "#{options[:load]} #{options[:project]}"
   end
 
   def format_list task_array

@@ -3,22 +3,27 @@ class ExternalsController < ApplicationController
   before_action :redirect_to_root, :unless => :logged_in?
 
   def dump
-    admin = User.find_by_name 'jblanco'
-    users = User.all
-    presentations = Presentation.all
-    evaluations = Evaluation.all
+    evaluations =
+      Evaluation.joins(:presentation, :user).
+      select(
+        'evaluations.*, ' \
+        'presentations.title AS presentation_title, ' \
+        'users.name AS evaluator'
+      ).as_json
 
-    data_hash = {
-      :users => users,
-      :presentations => presentations,
-      :evaluations => evaluations
-    }
-
-    if self.current_user == admin
-      render :json => data_hash
+    if self.current_user.in? self.allowed_users
+      render :json => evaluations
     else
       render :nothing => true
     end
+  end
+
+
+
+  protected
+
+  def allowed_users
+    [User.find_by_name('jblanco'), User.find_by_name('amanaloto')]
   end
 
 end

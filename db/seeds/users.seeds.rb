@@ -18,7 +18,17 @@ USER_ATTRIBUTES = [
   {:name => 'nzdrml',
     :slack_id => 'U06UQHNTA'},
   {:name => 'tinaalbores',
-    :slack_id => 'U06UQD8D8'}
+   :slack_id => 'U06UQD8D8'},
+  {:name => 'donmartinez24',
+   :slack_id => 'U070QS9EV'},
+  {:name => 'jgriego',
+   :slack_id => 'U072ERGKS'},
+  {:name => 'julius',
+   :slack_id => 'U070RD2BV'},
+  {:name => 'mjaltamira',
+   :slack_id => 'U070RD997'},
+  {:name => 'rogercastillo',
+   :slack_id => 'U070RLP9Q'}
 ]
 
 USER_ATTRIBUTES.each do |attrs|

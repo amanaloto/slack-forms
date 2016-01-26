@@ -31,10 +31,6 @@ class SessionsController < ApplicationController
     end
   end
 
-  def slash_command
-    render :plain => "<#{Figaro.env.app_url}/forms/new|SlackForms>"
-  end
-
 
 
   protected

@@ -1,6 +1,7 @@
 class FormsController < ApplicationController
 
   SLACK_URL = 'https://slack.com/api/files.upload'
+  SELECTED_FIELDS = [:id, :created, :title, :preview, :user]
 
   before_action :redirect_to_root,
     :only => [:new],
@@ -39,7 +40,15 @@ class FormsController < ApplicationController
   end
 
   def save_form_to_db file_info, type
-    Form.create :data => file_info, :form_type => type
+    Form.create(
+      :data => self.filter_data(file_info),
+      :form_type => type,
+      :user_id => self.current_user.id
+    )
+  end
+
+  def filter_data data
+    data.select { |attr, value| attr.to_sym.in? SELECTED_FIELDS }
   end
 
 end

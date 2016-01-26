@@ -1,29 +1,19 @@
 class ExternalsController < ApplicationController
 
-  before_action :redirect_to_root, :unless => :logged_in?
-
-  def dump
-    evaluations =
-      Evaluation.joins(:presentation, :user).
-      select(
-        'evaluations.*, ' \
-        'presentations.title AS presentation_title, ' \
-        'users.name AS evaluator'
-      ).as_json
-
-    if self.current_user.in? self.allowed_users
-      render :json => evaluations
-    else
-      render :nothing => true
-    end
+  def slash_command
+    render :plain => self.build_slack_forms_link
   end
 
 
 
   protected
 
-  def allowed_users
-    [User.find_by_name('jblanco'), User.find_by_name('amanaloto')]
+  def build_slack_forms_link
+    app_url = Figaro.env.app_url
+
+    "<#{app_url}/forms/new?form_type=payroll-hero|PayrollForm>\n" \
+      "<#{app_url}/form/new?form_type=daily_buzz|DailyBuzzForm>\n" \
+      "<#{app_url}/evaluations/new|EvaluationForm>\n" \
   end
 
 end

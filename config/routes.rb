@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root :to => 'sessions#new'
 
   get 'oauth', :to => 'sessions#oauth'
-  get 'slash_command', :to => 'sessions#slash_command'
+  get 'slash_command', :to => 'externals#slash_command'
 
   resources :forms, :only => [:new, :create]
 
@@ -11,8 +11,10 @@ Rails.application.routes.draw do
 
   resources :presentations, :only => [:new, :create]
 
-  resource :external, :only => [] do
-    get :dump, :on => :collection
+  resources :dump, :only => [] do
+    get :payroll_hero, :on => :collection
+    get :daily_buzz, :on => :collection
+    get :evaluations, :on => :collection
   end
 
 end

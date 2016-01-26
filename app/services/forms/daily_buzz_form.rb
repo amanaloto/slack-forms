@@ -1,5 +1,7 @@
 class Forms::DailyBuzzForm
 
+  LOADS = ['#0', '#1', '#2']
+
   def generate_query_string params
     body =
       self.format_body :today => params[:today], :tomorrow => params[:tomorrow]

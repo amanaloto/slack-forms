@@ -34,7 +34,7 @@
 
     .form-group.flex-sm
       = label_tag :load
-      = select_tag :load, options_for_select(::Form::LOADS, '#0'), :class => 'form-control'
+      = select_tag :load, options_for_select(::Forms::DailyBuzzForm::LOADS, '#0'), :class => 'form-control'
 
   .form-group
     = label_tag 'Send to channel'

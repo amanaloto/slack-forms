@@ -7,4 +7,4 @@
 
   .form-group
     = label_tag :form
-    = select_tag :form_type, options_for_select(::Form::FORM_TYPES, default), :class => 'form-control js-auto-submit'
+    = select_tag :form_type, options_for_select(::Form::FORM_TYPES + [:evaluation], default), :class => 'form-control js-auto-submit'

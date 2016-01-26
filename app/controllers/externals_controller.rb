@@ -11,9 +11,9 @@ class ExternalsController < ApplicationController
   def build_slack_forms_link
     app_url = Figaro.env.app_url
 
-    "<#{app_url}/forms/new?form_type=payroll-hero|PayrollForm>\n" \
-      "<#{app_url}/form/new?form_type=daily_buzz|DailyBuzzForm>\n" \
-      "<#{app_url}/evaluations/new|EvaluationForm>\n" \
+    "<#{app_url}/forms/new?form_type=payroll-hero|PayrollHero Form>\n" \
+      "<#{app_url}/forms/new?form_type=daily_buzz|DailyBuzz Form>\n" \
+      "<#{app_url}/evaluations/new|Evaluation Form>\n" \
   end
 
 end

@@ -1,17 +1,24 @@
 = form_tag '/forms', :method => :post do
-  = hidden_field_tag :form_type, :payroll_hero
+  = hidden_field_tag :form_type, :'payroll-hero'
+
+  .form-group
+    = label_tag :type
+    = select_tag :type, options_for_select(::Forms::PayrollHeroForm::PAYROLL_FORM_TYPES), :class => 'form-control js-payroll-hero-select', :data => {:target => '#time-range'}
 
   .form-group
     = label_tag :date
-    = text_field_tag :date, '', :class => 'form-control'
+    = text_field_tag :date, '', :class => 'form-control', :data => {:provide => 'datepicker'}
 
-  .form-group
-    = label_tag :time_in
-    = text_field_tag :time_in, '', :class => 'form-control'
+  #time-range.flex.hidden.time-range
+    .form-group
+      = label_tag :start_time
+      .flex.space-between.add-space
+        = time_select :start_time, '', {:ampm => true, :default => {:hour => '18', :minute => '0'}, :minute_step => 5}, :class => 'form-control', :disabled => true
 
-  .form-group
-    = label_tag :time_out
-    = text_field_tag :time_out, '', :class => 'form-control'
+    .form-group
+      = label_tag :end_time
+      .flex.space-between.add-space
+        = time_select :end_time, '', {:ampm => true, :default => {:hour => '18', :minute => '0'}, :minute_step => 5}, :class => 'form-control', :disabled => true
 
   .form-group
     = label_tag :reason
@@ -19,7 +26,7 @@
 
   .form-group
     = label_tag :channel
-    = select_tag :channel, options_for_select(::Form::CHANNEL_IDS.keys, :payroll_hero), :class => 'form-control'
+    = text_field_tag :channel, 'payroll-hero', :class => 'form-control', :disabled => true
 
   .form-buttons
     = submit_tag :Submit, :class => 'btn btn-success'

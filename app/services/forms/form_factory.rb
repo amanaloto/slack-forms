@@ -15,7 +15,7 @@ class Forms::FormFactory
     when :daily_buzz
       ::Forms::DailyBuzzForm
 
-    when :payroll_hero
+    when :'payroll-hero'
       ::Forms::PayrollHeroForm
 
     else

@@ -18,7 +18,7 @@ class FormsController < ApplicationController
     response = self.post_to_slack form_handler.generate_query_string(params)
 
     if response['ok']
-      self.save_form_to_db response['file']
+      self.save_form_to_db response['file'], params[:form_type]
 
       redirect_to :new_form,
         :flash => {:success => 'Successfully posted to slack!'}
@@ -38,8 +38,8 @@ class FormsController < ApplicationController
     JSON.parse RestClient.post(SLACK_URL, query_string)
   end
 
-  def save_form_to_db file_info
-    Form.create :data => file_info, :form_type => :daily_buzz
+  def save_form_to_db file_info, type
+    Form.create :data => file_info, :form_type => type
   end
 
 end

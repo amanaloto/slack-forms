@@ -3,6 +3,7 @@ class FormsController < ApplicationController
   SLACK_URL = 'https://slack.com/api/files.upload'
   SELECTED_FIELDS = [:id, :created, :title, :preview, :user]
 
+
   before_action :redirect_to_root,
     :only => [:new],
     :unless => :logged_in?
@@ -15,11 +16,11 @@ class FormsController < ApplicationController
   end
 
   def create
-    form_handler = ::Forms::FormFactory.new.build params[:form_type]
-    response = self.post_to_slack form_handler.generate_query_string(params)
+    @form_handler = ::Forms::FormFactory.new.build params[:form_type]
+    response = self.post_to_slack @form_handler.generate_query_string(params)
 
     if response['ok']
-      self.save_form_to_db response['file'], params[:form_type]
+      self.save_form_to_db response['file']
 
       redirect_to :new_form,
         :flash => {:success => 'Successfully posted to slack!'}
@@ -39,10 +40,16 @@ class FormsController < ApplicationController
     JSON.parse RestClient.post(SLACK_URL, query_string)
   end
 
-  def save_form_to_db file_info, type
+  def save_form_to_db file_info
+    data_info = self.filter_data file_info
+
+    if @form_handler.type == Form::FORM_TYPES[0]
+      data_info.merge! :load => @form_handler.load
+    end
+
     Form.create(
-      :data => self.filter_data(file_info),
-      :form_type => type,
+      :data => data_info,
+      :form_type => @form_handler.type,
       :user_id => self.current_user.id
     )
   end

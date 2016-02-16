@@ -1,4 +1,4 @@
-class Forms::PayrollHeroForm
+class Forms::PayrollHeroForm < Forms::BaseForm
 
   PAYROLL_FORM_TYPES = ['Missing Clock Out', 'Overtime']
 
@@ -10,6 +10,10 @@ class Forms::PayrollHeroForm
       :title => "#{params[:type]}: #{params[:date]}",
       :channels => ::Form::CHANNEL_IDS[:'payroll-hero']
     }
+  end
+
+  def type
+    Form::FORM_TYPES[1]
   end
 
 

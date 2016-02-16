@@ -1,7 +1,7 @@
-class Forms::NoForm
+class Forms::NoForm < Forms::BaseForm
 
-  def generate_query_string params
-    {}
+  def type
+    :no_form
   end
 
 end

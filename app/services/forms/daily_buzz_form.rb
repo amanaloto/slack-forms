@@ -1,8 +1,13 @@
-class Forms::DailyBuzzForm
+class Forms::DailyBuzzForm < Forms::BaseForm
 
   LOADS = ['#0', '#1', '#2']
 
+  attr_reader :load
+
+
   def generate_query_string params
+    @load = params[:load]
+
     body =
       self.format_body :today => params[:today], :tomorrow => params[:tomorrow]
     comment =
@@ -14,6 +19,10 @@ class Forms::DailyBuzzForm
       :initial_comment => comment,
       :channels => ::Form::CHANNEL_IDS[params[:channel].to_sym]
     }
+  end
+
+  def type
+    Form::FORM_TYPES[0]
   end
 
 

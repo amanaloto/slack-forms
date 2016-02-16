@@ -4,7 +4,7 @@ class DumpController < ApplicationController
 
 
   def evaluations
-    evaluations =
+    @forms =
       Evaluation.joins(:presentation, :user).
       select(
         'evaluations.*, ' \
@@ -12,21 +12,21 @@ class DumpController < ApplicationController
         'users.name AS evaluator'
       ).as_json
 
-    self.render_if_permitted evaluations
+    self.render_if_permitted
   end
 
   def payroll_hero
-    payroll_hero_forms =
+    @forms =
       Form.payroll_hero.joins(:user).select 'forms.*, users.name AS submitter'
 
-    self.render_if_permitted payroll_hero_forms
+    self.render_if_permitted
   end
 
   def daily_buzz
-    daily_buzz_forms =
+    @forms =
       Form.daily_buzz.joins(:user).select 'forms.*, users.name AS submitter'
 
-    self.render_if_permitted daily_buzz_forms
+    self.render_if_permitted
   end
 
 
@@ -37,9 +37,9 @@ class DumpController < ApplicationController
     [User.find_by_name('jblanco'), User.find_by_name('amanaloto')]
   end
 
-  def render_if_permitted forms
+  def render_if_permitted
     if self.current_user.in? self.allowed_users
-      render :json => forms
+      render :json => @forms
     else
       render :nothing => true
     end
